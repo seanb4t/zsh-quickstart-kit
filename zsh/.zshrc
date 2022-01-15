@@ -62,6 +62,8 @@ PATH="$PATH:/usr/local/bin:/usr/local/sbin:/sbin:/usr/sbin:/bin:/usr/bin"
 for path_candidate in /Applications/Xcode.app/Contents/Developer/usr/bin \
   /opt/homebrew/bin \
   /opt/homebrew/sbin \
+  /home/linuxbrew/.linuxbrew/bin \
+  /home/linuxbrew/.linuxbrew/sbin \
   /opt/local/bin \
   /opt/local/sbin \
   /usr/local/bin \
