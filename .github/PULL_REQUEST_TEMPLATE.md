@@ -26,7 +26,6 @@
 - [ ] If there was no author credit in a script added in this PR, I have added one.
 - [ ] I have confirmed that the link(s) in my PR are valid.
 - [ ] I have read the **CONTRIBUTING** document.
-- [ ] I have signed off my commits. You can use `git commit --amend --no-edit --signoff` to amend an existing commit, and you can find more details about signing off commits on the DCO GitHub action page [here](https://probot.github.io/apps/dco/)
 
 # License Acceptance
 

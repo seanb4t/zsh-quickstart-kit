@@ -1,4 +1,4 @@
-# Copyright 2006-2021 Joseph Block <jpb@unixorn.net>
+# Copyright 2006-2022 Joseph Block <jpb@unixorn.net>
 #
 # BSD licensed, see LICENSE.txt
 #
@@ -25,8 +25,9 @@ function can_haz() {
   which "$@" > /dev/null 2>&1
 }
 
+# Fix weirdness with intellij
 if [[ -z "${INTELLIJ_ENVIRONMENT_READER}" ]]; then
-    export POWERLEVEL9K_INSTANT_PROMPT=quiet
+    export POWERLEVEL9K_INSTANT_PROMPT='quiet'
 fi
 
 # Enable Powerlevel10k instant prompt. Should stay close to the top of ~/.zshrc.
@@ -76,9 +77,10 @@ for path_candidate in /Applications/Xcode.app/Contents/Developer/usr/bin \
   ~/gocode
 do
   if [[ -d "${path_candidate}" ]]; then
-    export PATH="${PATH}:${path_candidate}"
+    path+=("${path_candidate}")
   fi
 done
+export PATH
 
 # We will dedupe $PATH after loading ~/.zshrc.d/* so that any duplicates
 # added there get deduped too.
@@ -99,8 +101,12 @@ fi
 # tool that makes it easy to customize your color scheme and keep them in sync
 # across Linux and OS X/*BSD at http://geoff.greer.fm/lscolors/
 
-export LSCOLORS='Exfxcxdxbxegedabagacad'
-export LS_COLORS='di=1;34;40:ln=35;40:so=32;40:pi=33;40:ex=31;40:bd=34;46:cd=34;43:su=0;41:sg=0;46:tw=0;42:ow=0;43:'
+if [[ -z "$LSCOLORS" ]]; then
+  export LSCOLORS='Exfxcxdxbxegedabagacad'
+fi
+if [[ -z "$LS_COLORS" ]]; then
+  export LS_COLORS='di=1;34;40:ln=35;40:so=32;40:pi=33;40:ex=31;40:bd=34;46:cd=34;43:su=0;41:sg=0;46:tw=0;42:ow=0;43:'
+fi
 
 load-our-ssh-keys() {
   if [ -z "$SSH_AUTH_SOCK" ]; then

@@ -11,58 +11,60 @@
 <!-- DON'T EDIT THIS SECTION, INSTEAD RE-RUN doctoc TO UPDATE -->
 ## Table of Contents
 
-- [Announcement](#announcement)
-- [Installation](#installation)
-  - [Prerequisites](#prerequisites)
-    - [Fonts](#fonts)
-  - [OS-specific setup](#os-specific-setup)
-    - [fzf](#fzf)
-    - [macOS](#macos)
-    - [Linux](#linux)
-  - [Set up Zgenom and the starter kit](#set-up-zgenom-and-the-starter-kit)
-- [Contents of the kit](#contents-of-the-kit)
-  - [Included plugins](#included-plugins)
-- [Customizing the kit](#customizing-the-kit)
-  - [Behavior toggles](#behavior-toggles)
-    - [zqs](#zqs)
-      - [zqs check-for-updates](#zqs-check-for-updates)
-      - [zqs disable-omz-plugins](#zqs-disable-omz-plugins)
-      - [zqs enable-omz-plugins](#zqs-enable-omz-plugins)
-      - [zqs selfupdate](#zqs-selfupdate)
-      - [zqs update](#zqs-update)
-      - [zqs update-plugins](#zqs-update-plugins)
-  - [Functions and Aliases](#functions-and-aliases)
-    - [.zshrc.d](#zshrcd)
-  - [I like a plugin, but the aliases it installs overwrite other commands or aliases](#i-like-a-plugin-but-the-aliases-it-installs-overwrite-other-commands-or-aliases)
-  - [ZSH options](#zsh-options)
-  - [Self-update Settings](#self-update-settings)
-  - [Customizing the plugin list](#customizing-the-plugin-list)
-  - [Disabling zmv](#disabling-zmv)
-  - [Disabling oh-my-zsh](#disabling-oh-my-zsh)
-- [FAQ](#faq)
-  - [How do I reconfigure the prompt?](#how-do-i-reconfigure-the-prompt)
-  - [I added a new completion plugin and it isn't working](#i-added-a-new-completion-plugin-and-it-isnt-working)
-  - [I get a git error when I try to update the kit](#i-get-a-git-error-when-i-try-to-update-the-kit)
-  - [GNU stow complains with a warning that stowing zsh would cause conflicts](#gnu-stow-complains-with-a-warning-that-stowing-zsh-would-cause-conflicts)
-  - [_arguments:comparguments:325: can only be called from completion function](#_argumentscomparguments325-can-only-be-called-from-completion-function)
-  - [Could not open a connection to your authentication agent](#could-not-open-a-connection-to-your-authentication-agent)
-- [Other Resources](#other-resources)
-  - [ZSH](#zsh)
-  - [Dotfiles in general](#dotfiles-in-general)
-  - [Vim](#vim)
+- [ZSH Quickstart Kit](#zsh-quickstart-kit)
+  - [Table of Contents](#table-of-contents)
+  - [Announcement](#announcement)
+  - [Installation](#installation)
+    - [Prerequisites](#prerequisites)
+      - [Fonts](#fonts)
+    - [OS-specific setup](#os-specific-setup)
+      - [fzf](#fzf)
+      - [macOS](#macos)
+      - [Linux](#linux)
+    - [Set up Zgenom and the starter kit](#set-up-zgenom-and-the-starter-kit)
+  - [Contents of the kit](#contents-of-the-kit)
+    - [Included plugins](#included-plugins)
+  - [Customizing the kit](#customizing-the-kit)
+    - [Behavior toggles](#behavior-toggles)
+      - [zqs](#zqs)
+        - [zqs check-for-updates](#zqs-check-for-updates)
+        - [zqs disable-omz-plugins](#zqs-disable-omz-plugins)
+        - [zqs enable-omz-plugins](#zqs-enable-omz-plugins)
+        - [zqs selfupdate](#zqs-selfupdate)
+        - [zqs update](#zqs-update)
+        - [zqs update-plugins](#zqs-update-plugins)
+    - [Functions and Aliases](#functions-and-aliases)
+      - [.zshrc.d](#zshrcd)
+    - [I like a plugin, but the aliases it installs overwrite other commands or aliases](#i-like-a-plugin-but-the-aliases-it-installs-overwrite-other-commands-or-aliases)
+    - [ZSH options](#zsh-options)
+    - [Self-update Settings](#self-update-settings)
+    - [Customizing the plugin list](#customizing-the-plugin-list)
+    - [Disabling zmv](#disabling-zmv)
+    - [Disabling oh-my-zsh](#disabling-oh-my-zsh)
+  - [FAQ](#faq)
+    - [How do I reconfigure the prompt?](#how-do-i-reconfigure-the-prompt)
+    - [I added a new completion plugin, and it isn't working](#i-added-a-new-completion-plugin-and-it-isnt-working)
+    - [I get a git error when I try to update the kit](#i-get-a-git-error-when-i-try-to-update-the-kit)
+    - [GNU stow is warning that stowing zsh would cause conflicts](#gnu-stow-is-warning-that-stowing-zsh-would-cause-conflicts)
+    - [_arguments:comparguments:325: can only be called from completion function](#_argumentscomparguments325-can-only-be-called-from-completion-function)
+    - [Could not open a connection to your authentication agent](#could-not-open-a-connection-to-your-authentication-agent)
+  - [Other Resources](#other-resources)
+    - [ZSH](#zsh)
+    - [Dotfiles in general](#dotfiles-in-general)
+    - [Vim](#vim)
 
 <!-- END doctoc generated TOC please keep comment here to allow auto update -->
 
 ## Announcement
 
-I've switched the quickstart kit to [zgenom](https://github.com/jandamm/zgenom.git) instead of zgen. This should be a painless update since zgenom is a superset of zgen.
+I've switched the quickstart kit to use [zgenom](https://github.com/jandamm/zgenom.git) instead of `zgen`. This should be a painless update since `zgenom` is a superset of `zgen`.
 ## Installation
 
 ### Prerequisites
 
 #### Fonts
 
-This quickstart includes the [powerlevel10k](https://github.com/romkatv/powerlevel10k) ZSH theme, which requires a Powerline-compatible font in your terminal to display specific status glyphs. Powerline-compatible fonts include many useful glyphs, including the nice branch icon that the theme in this `.zshrc` uses.
+This quickstart includes the [powerlevel10k](https://github.com/romkatv/powerlevel10k) ZSH theme, which requires a Powerline-compatible font in your terminal to display status glyphs. Powerline-compatible fonts include many useful glyphs, including the nice branch icon that the theme in this `.zshrc` uses.
 
 Here are a few good Powerline-compatible fonts:
 
@@ -70,7 +72,7 @@ Here are a few good Powerline-compatible fonts:
 * [Cascadia Code](https://github.com/microsoft/cascadia-code) - Microsoft's Cascadia Code
 * [Fantasque Awesome Font](https://github.com/ztomer/fantasque_awesome_powerline) - A nice monospaced font, patched with Font-Awesome, Octoicons, and Powerline-Glyphs.
 * [Fira Mono](https://github.com/mozilla/Fira) - Mozilla's Fira type family.
-* [Hack](http://sourcefoundry.org/hack/) - Another Powerline-compatible font explicitly designed for source code and terminal usage.
+* [Hack](http://sourcefoundry.org/hack/) - Another Powerline-compatible font designed for source code and terminal usage.
 * [Input Mono](https://input.djr.com/) - A family of fonts designed specifically for code. It offers both monospaced and proportional fonts and includes Powerline glyphs.
 * [Iosevka](https://be5invis.github.io/Iosevka/) - Iosevka is an open source slender monospace sans-serif and slab-serif typeface inspired by [Pragmata Pro](http://www.fsd.it/fonts/pragmatapro.htm), [M+](http://mplus-fonts.osdn.jp/) and [PF DIN Mono](https://www.myfonts.com/fonts/parachute/pf-din-mono/), designed to be the ideal font for programming.
 * [Monoid](http://larsenwork.com/monoid/) - Monoid is customizable and optimized for coding with bitmap-like sharpness at 15px line-height even on low res displays.
@@ -114,9 +116,9 @@ To enable the enhanced history search, you'll need to install [fzf](https://gith
 
 After installing a Nerdfont or Powerline-compatible font, you will need to configure your terminal emulator to use your selected Powerline-compatible font. The name of the correct font usually ends with *for Powerline*.
 
-If the Powerline symbols cannot be seen, try closing all instances of the terminal emulator. The X Server may also need to be restarted for the new font to load correctly.
+If the Powerline symbols can't be seen or are garbled, try closing all instances of the terminal emulator. The X Server may also need to be restarted for the new font to load correctly.
 
-If you still can’t see the new fonts, double-check that the font has been installed to a valid X font path.
+If you still can’t see the new fonts, confirm that the font has been installed to a valid X font path.
 
 If you get garbled branch glyphs, make sure there isn't a separate font setting for non-ASCII characters in your terminal application that you also need to set to use a Powerline-compatible font. Konsole needs to be set to use UTF-8 encoding, for example.
 
@@ -129,11 +131,11 @@ Now that your fonts and default shell have been set up, install [zgenom](https:/
     2. `git clone https://github.com/jandamm/zgenom.git`
 2. Install the starter kit
     1. `cd ~`
-    2. `git clone git@github.com:unixorn/zsh-quickstart-kit.git`
+    2. `git clone https://github.com/unixorn/zsh-quickstart-kit.git`
 3. Configure zsh by symlinking the `.zshrc`, `.zsh_aliases`, and `.zsh-completions` from this repository into your `~`.
     1. You can do this with `stow` by:
         1. `cd zsh-quickstart-kit`
-        2. `stow --target=~ zsh`. If you have issues using `~` as a target, replace it with `/Users/YourUsername` on macOS or `/home/YourUsername` if you're on Linux. If you still have errors, symlink the files in zsh into your home directory.
+        2. `stow --target=~ zsh`. If you have issues using `~` as a target, do `stow --target="$HOME" zsh`. If you still have errors, symlink the files in the kit's `zsh` directory into your home directory.
 
 The `.zshrc`, `.zsh_aliases` & `.zsh_functions` files included in this kit enable the plugins listed below.
 
