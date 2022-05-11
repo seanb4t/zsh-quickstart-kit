@@ -171,6 +171,11 @@ if [[ -z "$SSH_CLIENT" ]] || can_haz keychain; then
   load-our-ssh-keys
 fi
 
+# Load local env settings ( if they exist )
+if [[ -f ~/.zshrc_local.zsh ]]; then
+  source ~/.zshrc_local.zsh
+fi
+
 # Now that we have $PATH set up and ssh keys loaded, configure zgenom.
 
 # Start zgenom
