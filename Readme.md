@@ -2,9 +2,8 @@
 
 [![License](https://img.shields.io/badge/License-Apache%202.0-blue.svg)](https://opensource.org/licenses/Apache-2.0)
 [![Build Status](https://img.shields.io/endpoint.svg?url=https%3A%2F%2Factions-badge.atrox.dev%2Funixorn%2Fzsh-quickstart-kit%2Fbadge&style=plastic)](https://actions-badge.atrox.dev/unixorn/zsh-quickstart-kit/goto)
-[![GitHub stars](https://img.shields.io/github/stars/unixorn/zsh-quickstart-kit.svg)](https://github.com/unixorn/zsh-quickstart-kit/stargazers)
 ![Awesomebot](https://github.com/unixorn/zsh-quickstart-kit/actions/workflows/awesomebot.yml/badge.svg)
-![Superlinter](https://github.com/unixorn/zsh-quickstart-kit/actions/workflows/superlinter.yml/badge.svg)
+![Megalinter](https://github.com/unixorn/zsh-quickstart-kit/actions/workflows/mega-linter.yml/badge.svg)
 [![GitHub last commit (branch)](https://img.shields.io/github/last-commit/unixorn/zsh-quickstart-kit/main.svg)](https://github.com/unixorn/zsh-quickstart-kit)
 
 <!-- START doctoc generated TOC please keep comment here to allow auto update -->
@@ -34,8 +33,8 @@
         - [zqs update](#zqs-update)
         - [zqs update-plugins](#zqs-update-plugins)
     - [Functions and Aliases](#functions-and-aliases)
-      - [.zshrc.d](#zshrcd)
-    - [I like a plugin, but the aliases it installs overwrite other commands or aliases](#i-like-a-plugin-but-the-aliases-it-installs-overwrite-other-commands-or-aliases)
+      - [Customizing with ~/.zshrc.d](#customizing-with-zshrcd)
+    - [I like a plugin, but some of the aliases and functions it installs overwrite other commands or aliases I use](#i-like-a-plugin-but-some-of-the-aliases-and-functions-it-installs-overwrite-other-commands-or-aliases-i-use)
     - [ZSH options](#zsh-options)
     - [Self-update Settings](#self-update-settings)
     - [Customizing the plugin list](#customizing-the-plugin-list)
@@ -132,7 +131,7 @@ Now that your fonts and default shell have been set up, install [zgenom](https:/
 2. Install the starter kit
     1. `cd ~`
     2. `git clone https://github.com/unixorn/zsh-quickstart-kit.git`
-3. Configure zsh by symlinking the `.zshrc`, `.zsh_aliases`, and `.zsh-completions` from this repository into your `~`.
+3. Configure zsh by symlinking the `.zshrc`, `.zsh-functions`, `.zgen-setup` and `.zsh_aliases` from this repository into your `~`.
     1. You can do this with `stow` by:
         1. `cd zsh-quickstart-kit`
         2. `stow --target=~ zsh`. If you have issues using `~` as a target, do `stow --target="$HOME" zsh`. If you still have errors, symlink the files in the kit's `zsh` directory into your home directory.
@@ -170,6 +169,7 @@ The zsh-quickstart-kit configures your ZSH environment so that it includes:
 * [unixorn/fzf-zsh-plugin](https://github.com/unixorn/fzf-zsh-plugin) - This enables `fzf`-powered history search.
 * [unixorn/git-extra-commands](https://github.com/unixorn/git-extra-commands) - A collection of extra helper scripts for `git`.
 * [unixorn/jpb.zshplugin](https://github.com/unixorn/jpb.zshplugin) - Some of my standard aliases & functions.
+* [unixorn/1password-op.plugin.zsh](https://github.com/unixorn/1password-op.plugin.zsh) - Tab completions for [1Password](https://1password.com)'s [op](https://developer.1password.com/docs/cli/get-started/) command line tool. Only installs itself if `op` is in your `$PATH`.
 * [unixorn/rake-completion.zshplugin](https://github.com/unixorn/rake-completion.zshplugin) - Reads the Rakefile in the current directory so you can tab-complete the Rakefile targets.
 * [unixorn/tumult.plugin.zsh](https://github.com/unixorn/tumult.plugin.zsh) - Adds macOS-specific functions and scripts. This plugin only adds itself to your `$PATH` if you're running macOS to allow you to use the same plugin list on macOS and other systems.
 * [zsh-autosuggestions](https://github.com/zsh-users/zsh-autosuggestions) - Adds fish-like autosuggestions to your ZSH sessions.
@@ -235,7 +235,7 @@ Updates all your plugins.
 
 ### Functions and Aliases
 
-#### .zshrc.d
+#### Customizing with ~/.zshrc.d
 
 The `.zshrc` included in this kit will automatically source any files it finds in `~/.zshrc.d`.
 
@@ -243,15 +243,17 @@ This makes it easy for you to add extra functions and aliases without having to 
 
 The files will be sourced in alphanumeric order after loading all the plugins, and I suggest you use a naming scheme of `001-onething`, `002-something-else` etc., to ensure they're loaded in the order you expect.
 
-### I like a plugin, but the aliases it installs overwrite other commands or aliases
+### I like a plugin, but some of the aliases and functions it installs overwrite other commands or aliases I use
 
-Make a file in `~/.zshrc.d` named something like `999-reset-aliases`. Since those are loaded after all the ZSH plugins, you can add lines like `unalias xyzzy` to remove an alias named `xyzzy`. Once you've cleared all the unwanted aliases, you can add new ones with your preferred names.
+Make a file in `~/.zshrc.d` named something like `999-reset-aliases`. Because files in `~/.zshrc.d` are loaded after all the ZSH plugins, you can add lines like `unalias xyzzy` to remove an alias named `xyzzy`, or `unset -f abcd` to remove a function named `abcd`.
+
+Once you've cleared all the unwanted aliases and functions, you can add new ones with your preferred names.
 
 ### ZSH options
 
 The quickstart kit does an opinionated (i.e., my way) setup of ZSH options and adds some functions and aliases I like on my systems.
 
-However, `~/.zshrc.d` is processed _after_ the quickstart sets its aliases, functions, and ZSH options, so if you don't care for something as set up in the quickstart, you can override the offending item in a shell fragment file there.
+However, `~/.zshrc.d` is processed *after* the quickstart sets its aliases, functions, and ZSH options, so if you don't care for something as set up in the quickstart, you can override the offending item in a shell fragment file there.
 
 
 ### Self-update Settings
@@ -264,7 +266,7 @@ I've included what I think is a good starter set of ZSH plugins in this reposito
 
 To make the list easier to customize without having to maintain a separate fork of the quickstart kit, if you create a file named `~/.zsh-quickstart-local-plugins`, the `.zshrc` from this starter kit will source that **instead** of running the `load-starter-plugin-list` function defined in `~/.zgen-setup`.
 
-**Using `~/.zsh-quickstart-local-plugins` is not additive. It will _completely replace_ the kit-provided list of plugins.**
+**Using `~/.zsh-quickstart-local-plugins` is not additive. It will *completely replace* the kit-provided list of plugins.**
 
 I realize that it would be a pain to create `.zsh-quickstart-local-plugins` from scratch, so to make customizing your plugins easier, I've included a `.zsh-quickstart-local-plugins-example` file at the root of the repository that will install the same plugin list that the kit does by default that you can use as a starting point for your own customizations.
 
