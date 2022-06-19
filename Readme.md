@@ -237,7 +237,7 @@ Updates all your plugins.
 
 #### Customizing with ~/.zshrc.d
 
-The `.zshrc` included in this kit will automatically source any files it finds in `~/.zshrc.d`.
+The `.zshrc` included in this kit will automatically source any files it finds in `~/.zshrc.d`. This happens after plugins are loaded. If you need to set variables or aliases before plugins are loaded, create files in `~/.zshrc.pre-plugins.d`.
 
 This makes it easy for you to add extra functions and aliases without having to maintain a separate fork of this repository and allows you to configure the behavior of some of the plugins by setting environment variables.
 
@@ -278,7 +278,7 @@ The quickstart automatically autoloads zmv. If you want to disable that, create 
 
 ### Disabling oh-my-zsh
 
-If you don't want `zgenom` to load the oh-my-zsh defaults, create `.zsh-quickstart-no-omz` in your home directory.
+If you don't want `zgenom` to load the oh-my-zsh defaults, run `zqs-disable-omz-plugins`.
 
 ## FAQ
 
