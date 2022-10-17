@@ -31,6 +31,8 @@
         - [zqs-enable-bindkey-handling](#zqs-enable-bindkey-handling)
         - [zqs disable-omz-plugins](#zqs-disable-omz-plugins)
         - [zqs enable-omz-plugins](#zqs-enable-omz-plugins)
+        - [zqs enable-ssh-askpass-require](#zqs-enable-ssh-askpass-require)
+        - [zqs disable-ssh-askpass-require](#zqs-disable-ssh-askpass-require)
         - [zqs-disable-ssh-key-listing](#zqs-disable-ssh-key-listing)
         - [zqs-enable-ssh-key-listing](#zqs-enable-ssh-key-listing)
         - [zqs-disable-zmv-autoloading](#zqs-disable-zmv-autoloading)
@@ -61,6 +63,7 @@
     - [ZSH](#zsh)
     - [Dotfiles in general](#dotfiles-in-general)
     - [Vim](#vim)
+  - [Thanks](#thanks)
 
 <!-- END doctoc generated TOC please keep comment here to allow auto update -->
 
@@ -238,6 +241,14 @@ Set the quickstart to not include any oh-my-zsh plugins from the standard plugin
 ##### zqs enable-omz-plugins
 
 Sets the quickstart to include the oh-my-zsh plugins from the standard plugin list.
+
+##### zqs enable-ssh-askpass-require
+
+Enable the quickstart to prompt for your ssh passphrase on the command line.
+
+##### zqs disable-ssh-askpass-require
+
+The quickstart will prompt for your ssh passphrase via a gui program. Default behavior.
 
 ##### zqs-disable-ssh-key-listing
 
