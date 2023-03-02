@@ -733,6 +733,7 @@ function zqs-help() {
   echo "zqs selfupdate - Force an immediate update of the quickstart kit"
   echo "zqs update - Update the quickstart kit and all your plugins"
   echo "zqs update-plugins - Update your plugins"
+  echo "zqs cleanup - Cleanup unused plugins after removing them from the list"
   echo ""
   echo "Quickstart settings commands:"
   echo "zqs disable-bindkey-handling - Set the quickstart to not touch any bindkey settings. Useful if you're using another plugin to handle it."
@@ -803,6 +804,9 @@ function zqs() {
       ;;
     'update-plugins')
       zgenom update
+      ;;
+    'cleanup')
+      zgenom clean
       ;;
     'delete-setting')
       shift
